@@ -1,0 +1,76 @@
+@import "./colors";
+
+$font: poppins, sans-serif;
+
+html * {
+  font-family: $font;
+}
+
+html {
+  font-size: 16px;
+  font-family: $font;
+  color: $font-color;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  button,
+  li,
+  a {
+    font-family: $font;
+    font-weight: 400;
+    color: $font-color;
+  }
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.75rem;
+}
+h5 {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+h6 {
+  font-size: 0.8rem;
+  margin-bottom: 0rem;
+  font-style: italic;
+}
+p {
+  font-size: 1rem;
+  line-height: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+form {
+  font-family: $font;
+  * {
+    font-family: $font;
+  }
+  input,
+  textarea,
+  select {
+    font-family: $font;
+    font-size: 1rem;
+  }
+}
+
+button,
+li {
+  font-family: $font;
+}

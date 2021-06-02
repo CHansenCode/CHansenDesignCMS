@@ -1,0 +1,45 @@
+//******************* PRIMARY COLOR PALETTE
+//
+//  PRIMARY
+$theme-primary: rgba(70, 130, 170, 1);
+//
+//  SECONDARY COLOR
+$theme-secondary: rgba(90, 130, 170, 1);
+//
+//
+$backdrop-color: rgba(253, 253, 253, 1);
+$box-shadow-bg: inset 0.5rem 0.3rem 3rem -2.6rem $theme-primary;
+$box-shadow-outer: 0.5rem 0.3rem 3rem -2.6rem $theme-primary;
+
+//******************* FONT
+$font-color: rgb(30, 85, 110);
+
+$nav-font: rgb(255, 255, 255);
+
+//******************* INTERACTION COLORS/EFFECTS
+$interaction: rgb(230, 175, 85);
+$active: rgb(130, 230, 255);
+
+$box-shadow-bg-interaction: inset 0.7rem 0.6rem 3.2rem -2.2rem $interaction;
+
+//MAIN BG
+$background-color: rgb(253, 253, 253);
+
+//NAV BG
+$nav-bg: linear-gradient(
+  60deg,
+  rgba(48, 138, 175, 1) 0%,
+  rgba(51, 132, 171, 1) 48%,
+  rgba(52, 177, 180, 1) 100%
+);
+
+//COMPONENTS
+$button-bg-color: #fff;
+
+//FOOTER BG
+$footer-bg-color: rgb(225, 240, 250);
+
+//SCROLLBAR (Only for Chrome)
+$scroll-thumb-bg: $theme-primary;
+$scroll-thumb-outline: thin solid $theme-primary;
+$scroll-track-outline: thin solid $theme-primary;

@@ -1,0 +1,85 @@
+.formContainer {
+  position: fixed;
+  z-index: 10;
+  width: 40vw;
+  min-height: 100%;
+  top: 0;
+  box-shadow: 0 0 3rem -1rem currentColor;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgba(255, 255, 255, 1);
+  border-left: thin solid gray;
+
+  transition: 0.4s ease;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  transition: 0.4s ease;
+
+  header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 2rem;
+    picture {
+      border: thin solid gray;
+    }
+  }
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border: thin solid lightgray;
+    box-shadow: 0 0 1rem -0.7rem currentColor;
+  }
+  input {
+    height: 2rem;
+  }
+  input[type="file"],
+  input[type="submit"] {
+    cursor: pointer;
+    height: 3rem;
+  }
+  select {
+    cursor: pointer;
+  }
+  input[type="submit"] {
+    box-shadow: inset 0 0 3rem -3rem orange;
+    background: transparent;
+  }
+  input[type="submit"]:hover {
+    box-shadow: inset 0 0 3rem -2rem orange;
+  }
+  input[type="file"] {
+    cursor: pointer;
+    height: 3rem;
+  }
+  input[type="file"]::placeholder {
+    padding-left: 1rem;
+  }
+}
+.inputContainer {
+  padding: 0;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  h6 {
+    width: 7rem;
+    margin: 0;
+    padding-right: 0.5rem;
+    white-space: nowrap;
+    letter-spacing: 1px;
+  }
+  input,
+  textarea,
+  select {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: inset 0.5rem 0.5rem 2rem -2rem currentColor;
+  }
+}

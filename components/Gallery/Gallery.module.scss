@@ -1,0 +1,15 @@
+.gallery {
+  position: relative;
+  width: 100%;
+  border: thin dashed green;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  overflow: hidden;
+}
+
+.post {
+  height: auto;
+  border: thin solid gray;
+  overflow: hidden;
+}

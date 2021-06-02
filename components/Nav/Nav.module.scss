@@ -1,0 +1,55 @@
+@import "../../styles/colors";
+
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 18rem;
+  box-shadow: 0 0 1rem 0.1rem rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+
+  display: grid;
+  grid-template:
+    "header" 5rem
+    "formList" auto
+    "statistics" 1fr
+    "footer" 10rem / 100%;
+  grid-gap: 2rem;
+
+  .header {
+    grid-area: header;
+  }
+  .formList {
+    grid-area: formList;
+  }
+  .statistics {
+    grid-area: statistics;
+  }
+  .footer {
+    grid-area: footer;
+  }
+
+  h4 {
+    border-bottom: thin dashed;
+  }
+
+  background: $nav-bg;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  button {
+    color: $nav-font;
+  }
+}

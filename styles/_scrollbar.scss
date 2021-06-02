@@ -1,0 +1,35 @@
+@import "./colors";
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+::-webkit-scrollbar-track {
+  outline: $scroll-track-outline;
+  outline-offset: -1px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $scroll-thumb-bg;
+  outline: $scroll-thumb-outline;
+  outline-offset: -1px;
+}
+
+::-webkit-button {
+  color: currentColor;
+}
+::-webkit-scrollbar-track-piece {
+  color: currentColor;
+}
+
+@media screen and (max-width: 840px) {
+  ::-webkit-scrollbar-thumb {
+    visibility: hidden;
+  }
+  ::-webkit-scrollbar {
+    visibility: hidden;
+    -webkit-appearance: none;
+    display: none;
+  }
+  ::-webkit-scrollbar-track {
+    visibility: hidden;
+  }
+}
