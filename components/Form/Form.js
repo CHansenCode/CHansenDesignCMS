@@ -10,37 +10,71 @@ import Image from "../Image/Image";
 
 import sheetStyle from "./Form.module.scss";
 
-const Form = ({ meta, currentId, setCurrentId, showForm, setShowForm }) => {
+const Form = ({
+  meta,
+  currentId,
+  setCurrentId,
+  showForm,
+  setShowForm,
+  dispatchUpdate,
+}) => {
   const dispatch = useDispatch();
 
+  //FORMDATA & RESET
   const [formData, setFormData] = useState({
+    //VIEW
     title: "",
     subtitle: "",
-    alt: "",
-    category: "architecture",
-    project: "ishallen",
-    stage: "investigation",
     description: "",
+
+    //SEO
+    alt: "",
+
+    //FILTERS
+    category: "",
+    project: "",
+    stage: "",
+    stageType: "",
+    drawingType: "",
+    tags: [],
+
+    //FILE
+    fileName: "",
     url: "",
     thumbnail: "",
-    file: "",
+
+    //ARCHIVALS
+    createdBy: "CHansen",
   });
   const clear = () => {
     setCurrentId(0);
     setFormData({
       title: "",
       subtitle: "",
-      alt: "",
-      category: "architecture",
-      project: "ishallen",
-      stage: "investigation",
       description: "",
+
+      //SEO
+      alt: "",
+
+      //FILTERS
+      category: "",
+      project: "",
+      stage: "",
+      stageType: "",
+      drawingType: "",
+      tags: [],
+
+      //FILE
+      fileName: "",
       url: "",
       thumbnail: "",
-      file: "",
+
+      //ARCHIVALS
+      createdBy: "CHansen",
     });
   };
 
+  //OnClick generateURL from category, project & filename
   function generateUrl(e) {
     e.preventDefault();
     let fileUrl =
@@ -49,39 +83,39 @@ const Form = ({ meta, currentId, setCurrentId, showForm, setShowForm }) => {
       "/" +
       formData.project +
       "/" +
-      formData.file;
+      formData.fileName;
     let thumbnailUrl =
       meta.mediaServerRoot +
       formData.category +
       "/" +
       formData.project +
       "/thumbnail/" +
-      formData.file;
+      formData.fileName;
     setFormData({ ...formData, thumbnail: thumbnailUrl, url: fileUrl });
   }
 
+  // IF currentId change (populated), find corresponding object in gallerypost store and insert/update setFormData
   const galleryPost = useSelector((state) =>
     currentId ? state.GalleryPosts.find((any) => any._id === currentId) : null
   );
-
   useEffect(() => {
     if (galleryPost) setFormData(galleryPost);
   }, [galleryPost]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createGalleryPost(formData));
-    // if (currentId === 0) {
-    //   dispatch(createGalleryPost(formData));
-    // } else {
-    //   dispatch(updateGalleryPost(currentId, formData));
-    // }
+    if (currentId === 0) {
+      dispatch(createGalleryPost(formData));
+    } else {
+      dispatchUpdate(formData);
+    }
+    clear();
   };
 
   function handleFileChange(e) {
     let string = e.target.value;
     let fileNameString = string.replace(/.*[\/\\]/, "");
-    setFormData({ ...formData, file: fileNameString });
+    setFormData({ ...formData, fileName: fileNameString });
   }
 
   return (
@@ -102,155 +136,212 @@ const Form = ({ meta, currentId, setCurrentId, showForm, setShowForm }) => {
         className={sheetStyle.form}
         onSubmit={handleSubmit}
       >
+        {/* Header */}
         <h4>{currentId ? currentId : "Create new entry"}</h4>
+
+        {/* Top */}
         <header>
           <div>
-            <div className={sheetStyle.inputContainer}>
-              <h6>title:</h6>
-              <input
-                name="title"
-                type="text"
-                value={formData.title}
-                onChange={(e) =>
-                  setFormData({ ...formData, title: e.target.value })
-                }
-              />
-            </div>
-            <div className={sheetStyle.inputContainer}>
-              <h6>subtitle:</h6>
-              <input
-                name="subtitle"
-                type="text"
-                value={formData.subtitle}
-                onChange={(e) =>
-                  setFormData({ ...formData, subtitle: e.target.value })
-                }
-              />
-            </div>
-            <div className={sheetStyle.inputContainer}>
-              <h6>Category:</h6>
-              <select
-                onChange={(e) =>
-                  setFormData({ ...formData, category: e.target.value })
-                }
-              >
-                <option value="architecture">architecture</option>
-                <option value="graphics">Graphics</option>
-                <option value="webdev">Webdev</option>
-              </select>
-            </div>
-            <div className={sheetStyle.inputContainer}>
-              <h6>Project Name:</h6>
-              <select
-                onChange={(e) =>
-                  setFormData({ ...formData, project: e.target.value })
-                }
-              >
-                <option value="ishallen">ishallen</option>
-                <option value="openkitchen">openkitchen</option>
-                <option value="Annerberg">Annerberg</option>
-                <option value="viking">viking</option>
-              </select>
-            </div>
-            <div className={sheetStyle.inputContainer}>
-              <h6>Stage:</h6>
-              <select
-                onChange={(e) =>
-                  setFormData({ ...formData, stage: e.target.value })
-                }
-              >
-                <option value="investigation">investigation</option>
-                <option value="proposal">proposal</option>
-                <option value="draft">draft</option>
-                <option value="final">final</option>
-              </select>
-            </div>
+            <Input
+              value={formData.title}
+              title="title"
+              onChange={(e) =>
+                setFormData({ ...formData, title: e.target.value })
+              }
+            />
+            <Input
+              value={formData.subtitle}
+              title="subtitle"
+              onChange={(e) =>
+                setFormData({ ...formData, subtitle: e.target.value })
+              }
+            />
+            <Input
+              title="category"
+              type="select"
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+            >
+              <option value="architecture">architecture</option>
+              <option value="webdev">webdev</option>
+              <option value="graphics">graphics</option>
+              <option value="other">other</option>
+            </Input>
+            <Input
+              title="project"
+              type="select"
+              onChange={(e) =>
+                setFormData({ ...formData, project: e.target.value })
+              }
+            >
+              <option value="ishallen">ishallen</option>
+              <option value="viking">viking</option>
+              <option value="openkitchen">openkitchen</option>
+              <option value="annerberg">annerberg</option>
+              <option value="svanen">svanen</option>
+            </Input>
+            <Input
+              title="stage"
+              type="select"
+              onChange={(e) =>
+                setFormData({ ...formData, stage: e.target.value })
+              }
+            >
+              <option value="investigative">investigation</option>
+              <option value="proposal">proposal</option>
+              <option value="process">process</option>
+              <option value="final">final</option>
+            </Input>
+            <Input
+              title="phase"
+              type="select"
+              onChange={(e) =>
+                setFormData({ ...formData, stageType: e.target.value })
+              }
+            >
+              <option value="measurment">measurment</option>
+              <option value="conceptual">conceptual</option>
+              <option value="proposal">proposal</option>
+              <option value="progress">progress</option>
+              <option value="final">final</option>
+            </Input>
+            <Input
+              title="drawing type"
+              type="select"
+              onChange={(e) =>
+                setFormData({ ...formData, drawingType: e.target.value })
+              }
+            >
+              <option value="elevation">elevation</option>
+              <option value="sitemap">sitemap</option>
+              <option value="section">section</option>
+              <option value="plan">plan</option>
+              <option value="axonometric">axonometric</option>
+              <option value="perspective">perspective</option>
+              <option value="diagram">perspective</option>
+              <option value="other">perspective</option>
+            </Input>
           </div>
+
           <picture>
             <Image cover src={formData.thumbnail} />
           </picture>
         </header>
 
-        <div className={sheetStyle.inputContainer}>
-          <h6>Image alt:</h6>
-          <textarea
-            name="alt"
-            type="text"
+        {/* Mid */}
+        <div className={sheetStyle.body}>
+          <Input
             value={formData.alt}
-            placeholder="alt"
-            rows="3"
+            title="alt"
+            type="textarea"
             onChange={(e) => setFormData({ ...formData, alt: e.target.value })}
           />
-        </div>
-        <div className={sheetStyle.inputContainer}>
-          <h6>Description:</h6>
-          <textarea
-            type="text"
-            name="description"
+          <Input
             value={formData.description}
-            placeholder="description"
-            rows="3"
+            title="description"
+            type="textarea"
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
           />
-        </div>
-        <div className={sheetStyle.inputContainer}>
-          <h6>Image file:</h6>
+
           <div style={{ display: "flex" }}>
             <input
-              style={{ width: "50%" }}
-              name="file"
               type="file"
               onChange={handleFileChange}
+              className={sheetStyle.inputContainer}
             />
-            <button style={{ width: "50%" }} onClick={generateUrl}>
-              <p style={{ margin: "0" }}>Generate URL</p>
+            <button
+              style={{ width: "60%", marginBottom: "0.5rem" }}
+              onClick={generateUrl}
+            >
+              Generate URL
             </button>
           </div>
-        </div>
-
-        <div className={sheetStyle.inputContainer}>
-          <h6>Url:</h6>
-          <input
-            name="url"
-            type="text"
+          <Input
             value={formData.url}
+            title="url"
             onChange={(e) => setFormData({ ...formData, url: e.target.value })}
           />
-        </div>
-        <div className={sheetStyle.inputContainer}>
-          <h6>Thumbnail:</h6>
-          <input
-            name="thumbnail"
-            type="text"
+          <Input
             value={formData.thumbnail}
+            title="thumbnail"
             onChange={(e) =>
               setFormData({ ...formData, thumbnail: e.target.value })
             }
           />
         </div>
-        <button>
+
+        <button style={{ marginTop: "1rem" }}>
           {!currentId ? "Add new entry" : "Update excisting entry"}
         </button>
       </form>
-      <button
-        style={{ border: "thin solid orange", color: "darkorange" }}
-        onClick={clear}
-      >
-        Clear form
-      </button>
-      <button
-        style={{ marginTop: "1rem", color: "red", border: "thin solid red" }}
-        onClick={() => {
-          setShowForm(false);
-          setCurrentId;
-        }}
-      >
-        Close form window
-      </button>
+
+      {/* Bottom Buttons */}
+      <footer className={sheetStyle.footer}>
+        <button
+          style={{ border: "thin solid orange", color: "darkorange" }}
+          onClick={clear}
+        >
+          Clear form
+        </button>
+        <button
+          style={{ marginTop: "1rem", color: "red", border: "thin solid red" }}
+          onClick={() => {
+            setShowForm(false);
+            setCurrentId;
+          }}
+        >
+          Close form window
+        </button>
+      </footer>
     </div>
   );
+};
+
+const Input = ({ type, name, title, onChange, value, rows, children }) => {
+  switch (type) {
+    case "text":
+      return (
+        <div className={sheetStyle.inputContainer}>
+          <h6>{title}</h6>
+          <input name={name} type={type} value={value} onChange={onChange} />
+        </div>
+      );
+    case "textarea":
+      return (
+        <div className={sheetStyle.inputContainer}>
+          <h6>{title}</h6>
+          <textarea
+            rows={rows}
+            name={name}
+            type={type}
+            value={value}
+            onChange={onChange}
+          />
+        </div>
+      );
+    case "select":
+      return (
+        <div className={sheetStyle.inputContainer}>
+          <h6>{title}</h6>
+          <select onChange={onChange}>{children}</select>
+        </div>
+      );
+      break;
+    default:
+      return (
+        <div className={sheetStyle.inputContainer}>
+          <h6>{title}</h6>
+          <input name={name} type={type} value={value} onChange={onChange} />
+        </div>
+      );
+      break;
+  }
+  Input.defaultProps = {
+    rows: "3",
+  };
 };
 
 export default Form;

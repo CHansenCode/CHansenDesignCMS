@@ -61,6 +61,22 @@ const ListView = ({
   );
 };
 //Full info
+const DetailedRow = ({ title, string, subString }) => {
+  return !subString ? (
+    <div>
+      <h6>{title}</h6>
+      <h5>{string}</h5>
+    </div>
+  ) : (
+    <div>
+      <h6>{title}</h6>
+      <h5>
+        <span style={{ color: "orange" }}>{subString.length + " chr."}</span>
+        {" - " + subString.substring(28)}
+      </h5>
+    </div>
+  );
+};
 const DetailedView = ({
   data,
   setCurrentId,
@@ -83,61 +99,25 @@ const DetailedView = ({
           className={sheetStyle.detailedView}
           key={i}
         >
+          <div className={sheetStyle.sortation}>
+            <DetailedRow title="title" string={post.title} />
+            <DetailedRow title="subtitle" string={post.subtitle} />
+            <DetailedRow title="category" string={post.category} />
+            <DetailedRow title="project" string={post.project} />
+            <DetailedRow title="stage" string={post.stage} />
+            <DetailedRow title="stageType" string={post.stageType} />
+            <DetailedRow title="drawingType" string={post.drawingType} />
+            <DetailedRow title="fileName" string={post.fileName} />
+            <DetailedRow title="url" subString={post.url} />
+            <DetailedRow title="thumbnail" subString={post.thumbnail} />
+            <DetailedRow title="createdBy" string={post.createdBy} />
+          </div>
           {/* IMAGE */}
           <div className={sheetStyle.imageViewer}>
             <Image cover src={post.url} />
           </div>
 
           {/* SORTATION INFO */}
-          <div className={sheetStyle.sortation}>
-            <div>
-              <h6>category:</h6>
-              <h5>{post.category}</h5>
-            </div>
-            <div>
-              <h6>project:</h6>
-              <h5>{post.project}</h5>
-            </div>
-            <div>
-              <h6>stage:</h6>
-              <h5>{post.stage ? post.stage : "-"}</h5>
-            </div>
-            <div>
-              <h6>title:</h6>
-              <h5>{post.title}</h5>
-            </div>
-            <div>
-              <h6>subtitle:</h6>
-              <h5>{post.subtitle}</h5>
-            </div>
-            <div>
-              <h6>createdAt:</h6>
-              <h5>{post.createdAt.substring(0, 10)}</h5>
-            </div>
-            <div>
-              <h6>url:</h6>
-              <h5>{"..." + post.url.substring(28)}</h5>
-            </div>
-            <div>
-              <h6>subtitle:</h6>
-              <h5>{post.subtitle}</h5>
-            </div>
-            <div>
-              <h6>imageAlt:</h6>
-              <h5>
-                {post.alt.length + " chr." + " - " + post.alt.substring(0, 20)}
-              </h5>
-            </div>
-            <div>
-              <h6>description:</h6>
-              <h5>
-                {post.description.length +
-                  " chr." +
-                  " - " +
-                  post.description.substring(0, 20)}
-              </h5>
-            </div>
-          </div>
         </div>
       ))}
     </div>

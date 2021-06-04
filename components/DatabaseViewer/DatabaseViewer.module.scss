@@ -83,7 +83,7 @@
   position: relative;
 
   display: grid;
-  grid-template: "imageViewer sortation" 1fr / 16rem 1fr;
+  grid-template: "sortation imageViewer" 1fr / 1fr 12rem;
 
   box-shadow: 0 0 1rem -0.3rem currentColor;
   border-radius: 0.5rem;
@@ -109,7 +109,8 @@
     display: flex;
     h6 {
       opacity: 0.8;
-      width: 6rem;
+      width: 7rem;
+      white-space: nowrap;
     }
     h5 {
       font-weight: 500;

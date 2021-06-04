@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // import { getArchProjects } from "../actions/archProjects.actions";
-import { getGallery } from "../actions/gallery.actions";
+import { getGallery, updateGalleryPost } from "../actions/gallery.actions";
 
 import Form from "../components/Form/Form";
 import DatabaseViewer from "../components/DatabaseViewer/DatabaseViewer";
@@ -11,6 +11,7 @@ import ViewSwitcher from "../components/ViewSwitcher/ViewSwitcher";
 const gallery = ({ meta }) => {
   const dispatch = useDispatch();
 
+  const [updateTrigger, SetUpdateTrigger] = useState(0);
   const [view, setView] = useState("listed");
   const [currentId, setCurrentId] = useState(0);
   const [showForm, setShowForm] = useState(false);
@@ -18,7 +19,9 @@ const gallery = ({ meta }) => {
 
   useEffect(() => {
     dispatch(getGallery());
-  }, [dispatch]);
+    SetUpdateTrigger(0);
+    console.log("reloaded");
+  }, [currentId, updateTrigger]);
 
   useEffect(() => {}, [currentId]);
 
@@ -26,6 +29,10 @@ const gallery = ({ meta }) => {
 
   function onClickChangeView(input) {
     setView(input);
+  }
+  function dispatchUpdate(payload) {
+    dispatch(updateGalleryPost(currentId, payload));
+    SetUpdateTrigger(1);
   }
 
   return (
@@ -57,6 +64,7 @@ const gallery = ({ meta }) => {
         setCurrentId={setCurrentId}
         showForm={showForm}
         setShowForm={setShowForm}
+        dispatchUpdate={dispatchUpdate}
       />
     </>
   );
