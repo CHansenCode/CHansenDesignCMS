@@ -12,19 +12,19 @@ import "../styles/style.scss";
 
 function MyApp({ Component, pageProps }) {
   const [meta, setMeta] = useState({
-    pages: {
+    pageStructure: {
       forms: [
         {
           title: "Architecture Projects",
-          pageRoute: "/architectureProjects",
+          pageRoute: "/architectureProject",
         },
         {
           title: "Image Gallery",
           pageRoute: "/gallery",
         },
         {
-          title: "Articles",
-          pageRoute: "/articles",
+          title: "Budget",
+          pageRoute: "/budget",
         },
       ],
       statistics: [
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
           pageRoute: "/statsComponents",
         },
       ],
-      Communications: [
+      communication: [
         {
           title: "Calendar",
           pageRoute: "/calendar",
@@ -48,7 +48,6 @@ function MyApp({ Component, pageProps }) {
         },
       ],
     },
-    formPages: [{ title: "Architecture Project" }, { title: "Gallery" }],
     mediaServerRoot: "https://media.chansen.design/",
   });
 
@@ -57,8 +56,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Provider store={store}>
-        <Layout meta={meta}>
-          <Component {...pageProps} meta={meta} />
+        <Layout meta={meta} setMeta={setMeta}>
+          <Component {...pageProps} meta={meta} setMeta={setMeta} />
         </Layout>
       </Provider>
     </>

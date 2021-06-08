@@ -1,0 +1,55 @@
+.calendar {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  overflow: hidden;
+  > {
+    border: thin dashed black;
+  }
+  h4 {
+    font-family: baskerville;
+  }
+}
+
+.month {
+  overflow: hidden;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  height: 10rem;
+  background-color: rgba(141, 236, 228, 0.575);
+  overflow: hidden;
+
+  //WEEK COLOR
+  > :nth-child(even) {
+    background-color: rgba(124, 124, 124, 0.062);
+  }
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border: thin solid lightgray;
+  grid-gap: 0.25rem;
+  overflow: hidden;
+
+  //TUES + THUR
+  > :nth-child(2),
+  > :nth-child(4) {
+    background-color: rgba(102, 102, 102, 0.151);
+  }
+  //WEEKEND COLOR
+  > :nth-child(7),
+  > :nth-child(6) {
+    background-color: rgba(131, 67, 67, 0.151);
+  }
+}
+
+.stickDiagram {
+  position: absolute;
+  left: 20rem;
+  top: 20rem;
+}

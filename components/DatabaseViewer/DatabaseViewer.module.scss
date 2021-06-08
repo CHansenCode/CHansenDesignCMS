@@ -75,33 +75,36 @@
 /*#region ________ DETAILED View    (FULL INFO)     ________ */
 
 .detailedViewContainer {
-  display: grid;
-  grid-template: auto / 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   grid-gap: 1rem;
-}
-.detailedView {
-  position: relative;
 
-  display: grid;
-  grid-template: "sortation imageViewer" 1fr / 1fr 12rem;
+  .detailedView {
+    position: relative;
 
-  box-shadow: 0 0 1rem -0.3rem currentColor;
-  border-radius: 0.5rem;
+    display: grid;
+    grid-template: "information imageViewer" 1fr / 1fr 30rem;
 
-  cursor: pointer;
-  overflow: hidden;
+    box-shadow: 0 0 1rem -0.3rem currentColor;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    padding-left: 2rem;
 
-  .imageViewer {
-    grid-area: imageViewer;
-  }
-  .sortation {
-    grid-area: sortation;
+    cursor: pointer;
+    overflow: hidden;
+
+    .imageViewer {
+      grid-area: imageViewer;
+    }
+    .sortation {
+      grid-area: information;
+    }
   }
 }
 
 .imageViewer {
   height: 100%;
-  width: 16rem;
+  width: 30rem;
 }
 .sortation {
   padding: 1rem;

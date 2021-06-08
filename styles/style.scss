@@ -29,6 +29,7 @@ a {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: 0.5s ease;
 }
 
 main {
@@ -37,8 +38,8 @@ main {
   padding: 2rem;
   flex-direction: column;
   justify-content: center;
-  margin-left: 18rem;
-  width: calc(100vw - 18rem);
+  min-height: 100vh;
+  overflow: hidden;
 
   h1,
   h2,
@@ -103,14 +104,9 @@ li {
 .activeLink {
   color: $interaction;
   margin: 0.5rem 0 0.5rem 0.25rem;
-
-  &::before {
-    transition: 0.5s ease;
-    content: ">";
-    margin-right: 0.25rem;
-  }
 }
 
 .active {
-  color: $interaction;
+  color: $active !important;
+  pointer-events: none;
 }

@@ -1,0 +1,65 @@
+@import "../../styles/colors";
+
+.outerDiv {
+  position: relative;
+  width: 100%;
+}
+
+.formElement {
+  position: relative;
+  width: 100%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.formElement {
+  //    ALL
+  input,
+  textarea,
+  select {
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 0.25rem;
+    border: thin solid $theme-primary;
+    box-shadow: 0 0 1rem -0.7rem currentColor;
+    color: currentColor;
+  }
+
+  //ON FOCUS
+  input:focus,
+  textarea:focus,
+  select:focus {
+    //SHOULD BE THIS
+    border: thin solid $interaction;
+    outline: none;
+    box-shadow: inset -1rem 0 3rem -2rem $interaction;
+  }
+
+  //    TEXTAREA
+  textarea {
+    color: currentColor;
+    resize: vertical;
+  }
+
+  //    INPUT - FILE & SUBMIT
+  input[type="file"],
+  input[type="submit"],
+  select {
+    cursor: pointer;
+  }
+  select {
+    cursor: pointer;
+  }
+
+  //MOVE TO STYLING DOCUMENT
+  input[type="submit"] {
+    box-shadow: inset 0 0 3rem -3rem orange;
+    background: transparent;
+  }
+  input[type="submit"]:hover {
+    box-shadow: inset 0 0 3rem -2rem orange;
+  }
+}

@@ -7,6 +7,7 @@ import {
 } from "../../actions/gallery.actions";
 
 import Image from "../Image/Image";
+import Input from "./Input";
 
 import sheetStyle from "./Form.module.scss";
 
@@ -26,6 +27,8 @@ const Form = ({
     title: "",
     subtitle: "",
     description: "",
+    scale: "",
+    northRotation: "",
 
     //SEO
     alt: "",
@@ -52,6 +55,8 @@ const Form = ({
       title: "",
       subtitle: "",
       description: "",
+      scale: "",
+      northRotation: "",
 
       //SEO
       alt: "",
@@ -73,7 +78,6 @@ const Form = ({
       createdBy: "CHansen",
     });
   };
-
   //OnClick generateURL from category, project & filename
   function generateUrl(e) {
     e.preventDefault();
@@ -145,6 +149,7 @@ const Form = ({
             <Input
               value={formData.title}
               title="title"
+              info="f.e. 'Main room'"
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
               }
@@ -156,72 +161,99 @@ const Form = ({
                 setFormData({ ...formData, subtitle: e.target.value })
               }
             />
-            <Input
-              title="category"
-              type="select"
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
-            >
-              <option value="architecture">architecture</option>
-              <option value="webdev">webdev</option>
-              <option value="graphics">graphics</option>
-              <option value="other">other</option>
-            </Input>
-            <Input
-              title="project"
-              type="select"
-              onChange={(e) =>
-                setFormData({ ...formData, project: e.target.value })
-              }
-            >
-              <option value="ishallen">ishallen</option>
-              <option value="viking">viking</option>
-              <option value="openkitchen">openkitchen</option>
-              <option value="annerberg">annerberg</option>
-              <option value="svanen">svanen</option>
-            </Input>
-            <Input
-              title="stage"
-              type="select"
-              onChange={(e) =>
-                setFormData({ ...formData, stage: e.target.value })
-              }
-            >
-              <option value="investigative">investigation</option>
-              <option value="proposal">proposal</option>
-              <option value="process">process</option>
-              <option value="final">final</option>
-            </Input>
-            <Input
-              title="phase"
-              type="select"
-              onChange={(e) =>
-                setFormData({ ...formData, stageType: e.target.value })
-              }
-            >
-              <option value="measurment">measurment</option>
-              <option value="conceptual">conceptual</option>
-              <option value="proposal">proposal</option>
-              <option value="progress">progress</option>
-              <option value="final">final</option>
-            </Input>
-            <Input
-              title="drawing type"
-              type="select"
-              onChange={(e) =>
-                setFormData({ ...formData, drawingType: e.target.value })
-              }
-            >
-              <option value="elevation">elevation</option>
-              <option value="sitemap">sitemap</option>
-              <option value="section">section</option>
-              <option value="plan">plan</option>
-              <option value="axonometric">axonometric</option>
-              <option value="perspective">perspective</option>
-              <option value="diagram">perspective</option>
-              <option value="other">perspective</option>
-            </Input>
+            <div className={sheetStyle.splitTwo}>
+              <Input
+                title="category"
+                type="select"
+                onChange={(e) =>
+                  setFormData({ ...formData, category: e.target.value })
+                }
+              >
+                <option value="investigative">-</option>
+                <option value="architecture">architecture</option>
+                <option value="webdev">webdev</option>
+                <option value="graphics">graphics</option>
+                <option value="other">other</option>
+              </Input>
+              <Input
+                title="project"
+                type="select"
+                onChange={(e) =>
+                  setFormData({ ...formData, project: e.target.value })
+                }
+              >
+                <option value="investigative">-</option>
+                <option value="ishallen">ishallen</option>
+                <option value="viking">viking</option>
+                <option value="openkitchen">openkitchen</option>
+                <option value="annerberg">annerberg</option>
+                <option value="svanen">svanen</option>
+              </Input>
+            </div>
+            <div className={sheetStyle.splitTwo}>
+              <Input
+                title="stage"
+                type="select"
+                onChange={(e) =>
+                  setFormData({ ...formData, stage: e.target.value })
+                }
+              >
+                <option value="investigative">-</option>
+                <option value="investigative">investigation</option>
+                <option value="proposal">proposal</option>
+                <option value="process">process</option>
+                <option value="final">final</option>
+              </Input>
+              <Input
+                title="phase"
+                type="select"
+                onChange={(e) =>
+                  setFormData({ ...formData, stageType: e.target.value })
+                }
+              >
+                <option value="investigative">-</option>
+                <option value="measurment">measurment</option>
+                <option value="conceptual">conceptual</option>
+                <option value="proposal">proposal</option>
+                <option value="progress">progress</option>
+                <option value="final">final</option>
+              </Input>
+            </div>
+            <div className={sheetStyle.splitTwo}>
+              <Input
+                title="drawing type"
+                type="select"
+                onChange={(e) =>
+                  setFormData({ ...formData, drawingType: e.target.value })
+                }
+              >
+                <option value="investigative">-</option>
+                <option value="elevation">elevation</option>
+                <option value="sitemap">sitemap</option>
+                <option value="section">section</option>
+                <option value="plan">plan</option>
+                <option value="axonometric">axonometric</option>
+                <option value="perspective">perspective</option>
+                <option value="diagram">diagram</option>
+                <option value="other">other</option>
+              </Input>
+            </div>
+            <div className={sheetStyle.splitTwo}>
+              <Input
+                title="scale"
+                info="f.e. 10,20,50,100,200"
+                onChange={(e) =>
+                  setFormData({ ...formData, scale: e.target.value })
+                }
+              />
+              <Input
+                title="northRotation"
+                info="0-360, 0 is north, clockwise by degree"
+                onChange={(e) =>
+                  setFormData({ ...formData, northRotation: e.target.value })
+                }
+              />
+            </div>
           </div>
 
           <picture>
@@ -298,50 +330,6 @@ const Form = ({
       </footer>
     </div>
   );
-};
-
-const Input = ({ type, name, title, onChange, value, rows, children }) => {
-  switch (type) {
-    case "text":
-      return (
-        <div className={sheetStyle.inputContainer}>
-          <h6>{title}</h6>
-          <input name={name} type={type} value={value} onChange={onChange} />
-        </div>
-      );
-    case "textarea":
-      return (
-        <div className={sheetStyle.inputContainer}>
-          <h6>{title}</h6>
-          <textarea
-            rows={rows}
-            name={name}
-            type={type}
-            value={value}
-            onChange={onChange}
-          />
-        </div>
-      );
-    case "select":
-      return (
-        <div className={sheetStyle.inputContainer}>
-          <h6>{title}</h6>
-          <select onChange={onChange}>{children}</select>
-        </div>
-      );
-      break;
-    default:
-      return (
-        <div className={sheetStyle.inputContainer}>
-          <h6>{title}</h6>
-          <input name={name} type={type} value={value} onChange={onChange} />
-        </div>
-      );
-      break;
-  }
-  Input.defaultProps = {
-    rows: "3",
-  };
 };
 
 export default Form;

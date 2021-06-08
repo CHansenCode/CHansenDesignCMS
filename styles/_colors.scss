@@ -14,11 +14,9 @@ $box-shadow-outer: 0.5rem 0.3rem 3rem -2.6rem $theme-primary;
 //******************* FONT
 $font-color: rgb(30, 85, 110);
 
-$nav-font: rgb(255, 255, 255);
-
 //******************* INTERACTION COLORS/EFFECTS
 $interaction: rgb(230, 175, 85);
-$active: rgb(130, 230, 255);
+$active: rgb(200, 140, 50);
 
 $box-shadow-bg-interaction: inset 0.7rem 0.6rem 3.2rem -2.2rem $interaction;
 
@@ -26,12 +24,14 @@ $box-shadow-bg-interaction: inset 0.7rem 0.6rem 3.2rem -2.2rem $interaction;
 $background-color: rgb(253, 253, 253);
 
 //NAV BG
-$nav-bg: linear-gradient(
-  60deg,
-  rgba(48, 138, 175, 1) 0%,
-  rgba(51, 132, 171, 1) 48%,
-  rgba(52, 177, 180, 1) 100%
-);
+// $nav-bg: linear-gradient(
+//   60deg,
+//   rgba(48, 138, 175, 1) 0%,
+//   rgba(51, 132, 171, 1) 48%,
+//   rgba(52, 177, 180, 1) 100%
+// );
+$nav-bg: rgb(250, 250, 250);
+$nav-font: rgb(30, 85, 110);
 
 //COMPONENTS
 $button-bg-color: #fff;

@@ -36,9 +36,8 @@ const gallery = ({ meta }) => {
   }
 
   return (
-    <>
+    <section style={{ minHeight: "100vh" }}>
       <>
-        <h2>{meta.formPages[1].title}</h2>
         <ViewSwitcher
           view={view}
           onClickChangeView={onClickChangeView}
@@ -57,6 +56,7 @@ const gallery = ({ meta }) => {
           setShowForm={setShowForm}
         />
       </>
+
       <Form
         meta={meta}
         title="Gallery Post"
@@ -66,7 +66,7 @@ const gallery = ({ meta }) => {
         setShowForm={setShowForm}
         dispatchUpdate={dispatchUpdate}
       />
-    </>
+    </section>
   );
 };
 

@@ -7,7 +7,7 @@ import Image from "../Image/Image";
 
 import sheetStyle from "./DatabaseViewer.module.scss";
 
-//Default
+//Default/ListStyle
 const ListView = ({
   data,
   setCurrentId,
@@ -43,7 +43,7 @@ const ListView = ({
             <h5>{post.category}</h5>
             <h5>{post.project}</h5>
             <h5>{post.title}</h5>
-            <h5>{post.url}</h5>
+            <h5>{post.url.substring(32)}</h5>
           </div>
           <button
             style={
@@ -60,19 +60,19 @@ const ListView = ({
     </div>
   );
 };
-//Full info
-const DetailedRow = ({ title, string, subString }) => {
-  return !subString ? (
-    <div>
-      <h6>{title}</h6>
-      <h5>{string}</h5>
-    </div>
-  ) : (
+
+//FullInfoStyle
+const DetailedRow = ({ title, string, substring, url }) => {
+  return (
     <div>
       <h6>{title}</h6>
       <h5>
-        <span style={{ color: "orange" }}>{subString.length + " chr."}</span>
-        {" - " + subString.substring(28)}
+        {string ? string : null}
+        {substring ? substring.substring(0, 80) + ".." : null}
+        {substring ? (
+          <b style={{ color: "green" }}>{substring.length} characters long</b>
+        ) : null}
+        {url ? "..." + url.substring(28) : null}
       </h5>
     </div>
   );
@@ -108,8 +108,10 @@ const DetailedView = ({
             <DetailedRow title="stageType" string={post.stageType} />
             <DetailedRow title="drawingType" string={post.drawingType} />
             <DetailedRow title="fileName" string={post.fileName} />
-            <DetailedRow title="url" subString={post.url} />
-            <DetailedRow title="thumbnail" subString={post.thumbnail} />
+            <DetailedRow title="url" url={post.url} />
+            <DetailedRow title="thumbnail" url={post.thumbnail} />
+            <DetailedRow title="alt" substring={post.alt} />
+            <DetailedRow title="description" substring={post.description} />
             <DetailedRow title="createdBy" string={post.createdBy} />
           </div>
           {/* IMAGE */}
@@ -123,7 +125,8 @@ const DetailedView = ({
     </div>
   );
 };
-//Visual
+
+//VisualStyle
 const ThumbnailView = ({
   data,
   setCurrentId,
@@ -158,6 +161,7 @@ const ThumbnailView = ({
   );
 };
 
+//COMPOSITION
 const DatabaseViewer = ({
   view,
   data,

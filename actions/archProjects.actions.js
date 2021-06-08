@@ -12,6 +12,16 @@ export const getArchProjects = () => async (dispatch) => {
   }
 };
 
+export const getArchProject = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchArchProject(id);
+
+    dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log / error.message;
+  }
+};
+
 export const createArchProject = (archProject) => async (dispatch) => {
   try {
     const { data } = await api.createArchProject(archProject);
