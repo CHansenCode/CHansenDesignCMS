@@ -33,15 +33,16 @@ const budget = ({ width }) => {
           position: "absolute",
           right: showForm === true ? "0" : "-50rem",
           top: "0",
-          height: "100%;",
+          height: "100vh",
           transition: "0.6s ease",
+          backgroundColor: "#FFF",
+          borderLeft: "thin solid currentColor",
         }}
       >
         <NewForm
           title="Budget form"
           onSubmit={onSubmit}
           width="50rem"
-          border="thin solid"
           padding="2rem"
         >
           {/* TITLE */}

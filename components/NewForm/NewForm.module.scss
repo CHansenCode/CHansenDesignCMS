@@ -27,6 +27,10 @@
     box-shadow: 0 0 1rem -0.7rem currentColor;
     color: currentColor;
   }
+  //submit button
+  > :nth-last-child(1) {
+    margin-top: 1.25rem;
+  }
 
   //ON FOCUS
   input:focus,
@@ -56,10 +60,13 @@
 
   //MOVE TO STYLING DOCUMENT
   input[type="submit"] {
-    box-shadow: inset 0 0 3rem -3rem orange;
-    background: transparent;
+    background-color: $button-bg-color;
+    box-shadow: $box-shadow-outer;
   }
-  input[type="submit"]:hover {
-    box-shadow: inset 0 0 3rem -2rem orange;
+
+  input[type="submit"]:hover,
+  input[type="submit"]:focus {
+    box-shadow: inset 0 0 3rem -1.2rem $interaction;
+    font-weight: 600;
   }
 }

@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { deleteGalleryPost } from "../../actions/gallery.actions";
-
 import Image from "../Image/Image";
 
 import sheetStyle from "./DatabaseViewer.module.scss";

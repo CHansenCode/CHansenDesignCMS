@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
@@ -12,6 +12,7 @@ import "../styles/style.scss";
 
 function MyApp({ Component, pageProps }) {
   const [meta, setMeta] = useState({
+    loggedIn: false,
     pageStructure: {
       forms: [
         {

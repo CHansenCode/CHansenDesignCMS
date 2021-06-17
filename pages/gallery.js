@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 // import { getArchProjects } from "../actions/archProjects.actions";
 import { getGallery, updateGalleryPost } from "../actions/gallery.actions";
@@ -9,12 +10,16 @@ import DatabaseViewer from "../components/DatabaseViewer/DatabaseViewer";
 import ViewSwitcher from "../components/ViewSwitcher/ViewSwitcher";
 
 const gallery = ({ meta }) => {
+  const router = useRouter();
   const dispatch = useDispatch();
 
+  //DATA STATES
   const [updateTrigger, SetUpdateTrigger] = useState(0);
-  const [view, setView] = useState("listed");
   const [currentId, setCurrentId] = useState(0);
+
+  //UI STATES
   const [showForm, setShowForm] = useState(false);
+  const [view, setView] = useState("listed");
   const [activateDeletionAllowed, setActivateDeletionAllowed] = useState(false);
 
   useEffect(() => {
@@ -23,7 +28,10 @@ const gallery = ({ meta }) => {
     console.log("reloaded");
   }, [currentId, updateTrigger]);
 
-  useEffect(() => {}, [currentId]);
+  //if no token, push to startPage
+  useEffect(() => {
+    !meta.token ? router.push("/") : null;
+  }, []);
 
   let data = useSelector((state) => state.GalleryPosts);
 

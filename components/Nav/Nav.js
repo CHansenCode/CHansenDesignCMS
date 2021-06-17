@@ -26,15 +26,22 @@ const Nav = ({ meta, setMeta, showNav, setShowNav }) => {
           {/* HEADER */}
           <Link href="/">
             <header>
-              <h3>{meta.projectName}</h3>
-
-              <p>
-                <b style={{ color: "lightyellow" }}>C&nbsp;</b>ontent
+              <h4>
+                <b style={{ color: "currentColor", marginRight: "0.1rem" }}>
+                  C
+                </b>
+                ontent
                 <br />
-                <b style={{ color: "lightyellow" }}>M&nbsp;</b>anagement
+                <b style={{ color: "currentColor", marginRight: "0.1rem" }}>
+                  M
+                </b>
+                anagement
                 <br />
-                <b style={{ color: "lightyellow" }}>S&nbsp;</b>ystem
-              </p>
+                <b style={{ color: "currentColor", marginRight: "0.1rem" }}>
+                  S
+                </b>
+                ystem
+              </h4>
             </header>
           </Link>
 

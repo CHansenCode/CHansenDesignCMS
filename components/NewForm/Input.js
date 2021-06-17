@@ -1,5 +1,19 @@
 const Input = ({ title, type, value, onChange, placeholder, rows }) => {
   switch (type) {
+    //password
+    case "password":
+      return (
+        <div>
+          {title ? <h6>{title}</h6> : null}
+          <input
+            type="password"
+            placeholder={placeholder ? placeholder : ""}
+            value={value}
+            onChange={onChange}
+          />
+        </div>
+      );
+      break;
     //CHECKBOX
     case "checkbox":
       return (

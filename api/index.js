@@ -1,6 +1,11 @@
 import axios from "axios";
 
-import { galleryAPI, architectureProjectsAPI, budgetAPI } from "../config";
+import {
+  galleryAPI,
+  architectureProjectsAPI,
+  budgetAPI,
+  userAPI,
+} from "../config";
 
 //ARCHITECTURAL PROJECTS API
 export const fetchArchProjects = () => axios.get(architectureProjectsAPI);
@@ -29,3 +34,16 @@ export const updateBudgetPost = (id, updatedBudgetPost) => {
   axios.patch(`${budgetAPI}/${id}`, updatedBudgetPost);
 };
 export const deleteBudgetPost = (id) => axios.delete(`${budgetAPI}/${id}`);
+
+//USER API
+export const getUsers = () => axios.get(userAPI);
+export const authUser = (data) =>
+  axios
+    .post(`${userAPI}/login`, data)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+export const registerUser = (data) => axios.post(userAPI, data);
